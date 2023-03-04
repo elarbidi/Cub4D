@@ -6,11 +6,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 #include <fcntl.h>
+#include <math.h>
 #include "mlx.h"
 // Define Erros:
 
 # define SUCCES 0
 # define ERROR 1
+#define PI 3.14159
 
 # define NONVALID_FILE "ERROR:\n-- Non valid extension. Need a .cub file! --"
 # define ARGC_ERROR "-- I only need a .cub file --"
@@ -48,6 +50,17 @@
 typedef struct s_player {
 	int	x;
 	int y;
+	int xprev;
+	int yprev;
+	float xdem;
+	float ydem;
+	int	radius;
+	float angle;
+	int	turn_direction;
+	int walk_direction;
+	double rotatio;
+	int speed;
+	double rotation_speed;
 } t_player;
 
 typedef struct s_game {
