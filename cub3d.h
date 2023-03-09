@@ -12,7 +12,8 @@
 
 # define SUCCES 0
 # define ERROR 1
-#define PI 3.14159
+#define PI 3.14159265359
+#define FOV (PI/2)
 
 # define NONVALID_FILE "ERROR:\n-- Non valid extension. Need a .cub file! --"
 # define ARGC_ERROR "-- I only need a .cub file --"
@@ -48,8 +49,22 @@
 	Also in hovering you will easy know each var was used for. 
 */
 typedef struct s_player {
-	int	x;
-	int y;
+	float	x;
+	float	y;
+
+//	horizontal
+	float	hx;
+	float	hy;
+// vertical 
+	float	vy;
+	float	vx;
+// the real ones
+	float	px;
+	float	py;
+
+// flag 
+	int vflag;
+	int hflag;
 	int xprev;
 	int yprev;
 	float xdem;
