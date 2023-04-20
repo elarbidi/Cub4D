@@ -21,7 +21,6 @@ void getWidth(t_parse *parse)
         i++;    
     }
     parse->game = malloc(sizeof(t_game));
-    parse->game->width = biglen * 30;
-    parse->game->hight = i * 30;
-    printf("%i\n", biglen);
+    parse->game->width = biglen * 64;
+    parse->game->hight = i * 64;
 }

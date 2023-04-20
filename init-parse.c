@@ -24,6 +24,7 @@ int init_parse(int ac, char **av) {
 			return (1);
 		player_pos(parse);
 		init_game(parse);
+
 		parse->map_elmnt = parse->map_elmnt - 6;
 		free_all(parse);
 		free(parse);

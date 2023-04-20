@@ -17,6 +17,8 @@ SRCS = main.c\
 	./parsing/tools.c\
 	./raycasting/utils.c\
 	./raycasting/initgame.c\
+	./textures/init_textures.c\
+	./textures/texture_colors.c
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -24,7 +26,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 OBJS = $(SRCS:%.c=%.o)
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = 
 
 all: $(NAME)
 

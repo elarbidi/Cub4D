@@ -7,6 +7,7 @@
 # include <unistd.h>
 #include <fcntl.h>
 #include <math.h>
+#include<string.h>
 #include "mlx.h"
 // Define Erros:
 
@@ -49,6 +50,13 @@
 	Also in hovering you will easy know each var was used for. 
 */
 typedef struct s_player {
+
+//	colors
+	int		colors;
+
+// destination
+	float	dest;
+//	player
 	float	x;
 	float	y;
 
@@ -65,8 +73,11 @@ typedef struct s_player {
 // flag 
 	int vflag;
 	int hflag;
+
+//	previous point
 	int xprev;
 	int yprev;
+
 	float xdem;
 	float ydem;
 	int	radius;
@@ -77,6 +88,23 @@ typedef struct s_player {
 	int speed;
 	double rotation_speed;
 } t_player;
+
+typedef struct t_vesion {
+	float	dest_plan;
+	float	center_plan;
+	float	bottom_plan;
+	float	top_plan;
+	int		width_text;
+	
+	int		h_active;
+	int		v_active;
+
+	int		tp;
+	int		bp;
+
+	int		ty;
+	int		tx;
+} t_vesion;
 
 typedef struct s_game {
 	void	*win;
@@ -91,8 +119,38 @@ typedef struct s_game {
 	
 }	t_game;
 
+typedef struct s_txt {
+	// create a textures for each side 
+	int *no;
+	int *so;
+	int *we;
+	int *ea;
+
+	// width of textures 
+	int no_width;
+	int so_width;
+	int we_width;
+	int ea_width;
+
+	// width and height 
+
+	int	width_img;
+	int	height_img;
+
+	// set path in this array
+	char	*arr_tx[4];
+
+	// image open
+	void *img;
+	int *add;
+
+}	t_txt;
+
 typedef struct s_parse
 {
+	t_game		*game;
+	t_player	player;
+	t_txt		tx;
 	void	*wall; // a pointer to a texture file for the walls in the game world
 	void	*floor; // a pointer to a texture file for the floor in the game world
 	int		posx; // the starting x-coordinate of the player in the game world
@@ -113,8 +171,8 @@ typedef struct s_parse
 	char	*path_we; // a string containing the file path to the texture file for the west-facing walls of the game world
 	int		*f_colors; // an array of integers containing the RGB values for the floor color in the game world
 	int			*c_colors; // an array of integers containing the RGB values for the ceiling color in the game world
-	t_game		*game;
-	t_player	player;
+	
+	// t_vesion	fv;
 }             t_parse;
 
 ///////////////////////////////////////////////////////////////// PARSING //////////////////////////////////////////////////////////////////
@@ -171,5 +229,11 @@ char    *gnl(int fd);
 ///////////////////////////////////////////////////////////////// RAYCASTING //////////////////////////////////////////////////////////////////
 void	getWidth(t_parse *parse);
 void    init_game(t_parse *parse);
+
+
+void    init_texture(t_parse *p);
+int    *fill_texture(t_parse *p, int red);
+void    fill_arr(t_txt *tx, int *res);
+void    texel_coor(t_parse *p, t_vesion  *v_field);
 
 # endif
